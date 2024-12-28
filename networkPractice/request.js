@@ -12,15 +12,18 @@ btn.addEventListener("click", async() => {
         colorCode: colorCode.value,
         password: "0000",
     }
-
-    await postFunc(param);
-    location.reload(true);
+    if(param.mbti && param.colorCode){
+        await postFunc(param);
+        location.reload(true);
+    }
+    else{
+        alert("MBTI와 색상코드를 입력해주세요.")
+    }
 });
 
 async function dataList() {
     const datas = await getFunc();
     const list = datas.results;
-    console.log(list);
     list.forEach((data)=> {
         const registered = makeDiv();
         registered.classList.add("registeredMbti");
